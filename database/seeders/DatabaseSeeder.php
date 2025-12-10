@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Buat User Admin/Seller
         $user = User::create([
-            'name' => 'Sasa Seller',
-            'email' => 'sasa@store.com',
+            'name' => 'Dina Seller',
+            'email' => 'dina@store.com',
             'password' => bcrypt('password'),
             'role' => 'member',
         ]);
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 4. Buat 5 Produk Dummy
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             Product::create([
                 'store_id' => $store->id,
                 'product_category_id' => $category->id,
