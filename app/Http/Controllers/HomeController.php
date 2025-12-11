@@ -51,4 +51,55 @@ class HomeController extends Controller
 
         return view('pages.checkout', compact('product', 'qty', 'subtotal'));
     }
+
+    public function topup()
+    {
+        return view('pages.topup');
+    }
+
+    public function postTopup(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:10000',
+        ]);
+
+        $vaNumber = '88000' . rand(1000, 9999) . rand(100, 999);
+
+        return redirect()->route('front.payment', [
+            'va_number' => $vaNumber,
+            'amount' => $request->amount,
+            'type' => 'topup' 
+        ]);
+    }
+
+    public function payment(Request $request)
+    {
+        $vaNumber = $request->query('va_number');
+        $amount = $request->query('amount');
+        $type = $request->query('type');
+
+        if (!$vaNumber || !$amount) {
+            return redirect()->route('home')->with('error', 'Data pembayaran tidak valid');
+        }
+
+        return view('pages.payment', compact('vaNumber', 'amount', 'type'));
+    }
+
+    public function paymentPost(Request $request)
+    {
+        $type = $request->input('type');
+        $amount = $request->input('amount');
+
+        if ($type == 'topup') {
+            $user = auth()->user();
+            
+            $balance = $user->balance ?? $user->balance()->create(['balance' => 0]);
+            
+            $balance->balance += $amount;
+            $balance->save();
+
+            return redirect()->route('home')->with('success', 'Topup Berhasil! Saldo sudah masuk.');
+        }
+        return redirect()->route('home');
+    }
 }
