@@ -20,12 +20,18 @@
                     @auth
                         @if(Auth::user()->isAdmin())
                             <a href="{{ route('filament.admin.pages.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">
-                                ⚙️ Admin Dashboard
+                                Admin Dashboard
                             </a>
                         @endif
 
-                        <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
-                            💰 Rp {{ number_format(optional(Auth::user()->balance)->balance, 0, ',', '.') }}
+                        <div class="flex items-center gap-2">
+                            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                Rp {{ number_format(optional(Auth::user()->balance)->balance, 0, ',', '.') }}
+                            </div>
+
+                            <a href="{{ route('front.topup') }}" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold transition shadow-sm">
+                                + Isi Saldo
+                            </a>
                         </div>
 
                         <span class="text-gray-700">Hi, {{ Auth::user()->name }}</span>
@@ -49,10 +55,17 @@
             <div class="bg-white p-4 rounded-lg shadow">
                 <h3 class="font-bold text-lg mb-4 text-gray-800">Kategori</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('home') }}" class="text-blue-600 font-medium hover:underline">Semua Produk</a></li>
+                    <li>
+                        <a href="{{ route('home') }}" 
+                           class="{{ request()->routeIs('home') ? 'text-blue-600 font-bold' : 'text-gray-600 font-medium hover:underline hover:text-blue-500' }}">
+                            Semua Produk
+                        </a>
+                    </li>
+
                     @foreach($categories as $category)
                         <li>
-                            <a href="{{ route('front.category', $category->slug) }}" class="text-gray-600 hover:text-blue-500 hover:underline">
+                            <a href="{{ route('front.category', $category->slug) }}" 
+                                class="{{ request()->is('category/' . $category->slug) ? 'text-blue-600 font-bold' : 'text-gray-600 hover:text-blue-500 hover:underline' }}">
                                 {{ $category->name }}
                             </a>
                         </li>
