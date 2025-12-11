@@ -49,7 +49,7 @@
             <div class="bg-white p-4 rounded-lg shadow">
                 <h3 class="font-bold text-lg mb-4 text-gray-800">Kategori</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('front.index') }}" class="text-blue-600 font-medium hover:underline">Semua Produk</a></li>
+                    <li><a href="{{ route('home') }}" class="text-blue-600 font-medium hover:underline">Semua Produk</a></li>
                     @foreach($categories as $category)
                         <li>
                             <a href="{{ route('front.category', $category->slug) }}" class="text-gray-600 hover:text-blue-500 hover:underline">
@@ -68,19 +68,22 @@
                 
                 @foreach($products as $product)
                 <div class="bg-white rounded-lg shadow hover:shadow-xl transition duration-300 overflow-hidden">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover">
-                    
+                <a href="{{ route('front.details', $product->slug) }}">    
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover hover:opacity-90 transition">
+                </a>    
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 truncate">{{ $product->name }}</h3>
+                        <a href="{{ route('front.details', $product->slug) }}">
+                            <h3 class="text-lg font-semibold text-gray-800 truncate">{{ $product->name }}</h3>
+                        </a>
                         <p class="text-gray-500 text-sm mt-1 truncate">{{ $product->description }}</p>
                         
                         <div class="flex justify-between items-center mt-4">
                             <span class="text-blue-600 font-bold">
                                 Rp {{ number_format($product->price, 0, ',', '.') }}
                             </span>
-                            <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">
+                            <a href="{{ route('front.details', $product->slug) }}" class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
