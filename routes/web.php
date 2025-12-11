@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
-Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/category/{slug}', [FrontController::class, 'filterCategory'])->name('front.category');
+Route::get('/category/{slug}', [HomeController::class, 'filterCategory'])->name('front.category');
+Route::get('/product/{slug}', [HomeController::class, 'details'])->name('front.details');
+
+Route::get('/checkout', function() {
+    return "Halaman Checkout (Soon)";
+})->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
