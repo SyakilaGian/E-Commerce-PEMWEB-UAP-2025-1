@@ -49,10 +49,10 @@
             <div class="bg-white p-4 rounded-lg shadow">
                 <h3 class="font-bold text-lg mb-4 text-gray-800">Kategori</h3>
                 <ul class="space-y-2">
-                    <li><a href="/" class="text-blue-600 font-medium">Semua Produk</a></li>
+                    <li><a href="{{ route('front.index') }}" class="text-blue-600 font-medium hover:underline">Semua Produk</a></li>
                     @foreach($categories as $category)
                         <li>
-                            <a href="#" class="text-gray-600 hover:text-blue-500">
+                            <a href="{{ route('front.category', $category->slug) }}" class="text-gray-600 hover:text-blue-500 hover:underline">
                                 {{ $category->name }}
                             </a>
                         </li>
@@ -68,7 +68,7 @@
                 
                 @foreach($products as $product)
                 <div class="bg-white rounded-lg shadow hover:shadow-xl transition duration-300 overflow-hidden">
-                    <img src="{{ asset('img/test.jpeg') }}" alt="{{ $product->name }}" class="w-full h-48 object-cover">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover">
                     
                     <div class="p-4">
                         <h3 class="text-lg font-semibold text-gray-800 truncate">{{ $product->name }}</h3>
