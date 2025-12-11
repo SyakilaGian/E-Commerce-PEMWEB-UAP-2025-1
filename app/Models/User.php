@@ -7,8 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\UserBalance;
-
 
 class User extends Authenticatable
 {
@@ -75,34 +73,5 @@ class User extends Authenticatable
     public function buyer()
     {
         return $this->hasOne(Buyer::class);
-    }
-
-    public function balance()
-    {
-        return $this->hasOne(UserBalance::class);
-    }
-
-    public function topup($amount)
-    {
-        if (!$this->balance) {
-            $this->balance()->create(['balance' => 0]);
-            $this->refresh();
-        }
-        
-        $this->balance->increment('balance', $amount);
-    }
-
-    public function deduct($amount)
-    {
-        if (!$this->balance) {
-            return false;
-        }
-
-        if ($this->balance->balance >= $amount) {
-            $this->balance->decrement('balance', $amount);
-            return true; 
-        }
-
-        return false; 
     }
 }

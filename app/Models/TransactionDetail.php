@@ -8,11 +8,11 @@ class TransactionDetail extends Model
 {
 
     protected $fillable = [
-        'transaction_id',
-        'product_id',
-        'qty',
-        'subtotal',
-    ];
+    'code', 'buyer_id', 'store_id', 'address', 'address_id', 'city',
+    'postal_code', 'shipping', 'shipping_type', 'shipping_cost',
+    'tracking_number', 'tax', 'grand_total', 'payment_status',
+    'status', 'shipping_receipt',
+];
 
     protected $casts = [
         'subtotal' => 'decimal:2',
