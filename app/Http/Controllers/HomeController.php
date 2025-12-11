@@ -35,4 +35,20 @@ class HomeController extends Controller
 
         return view('pages.product-detail', compact('product', 'recommendations'));
     }
+
+    public function checkout(Request $request)
+    {
+        $slug = $request->input('product_slug');
+        $qty = $request->input('quantity', 1);
+
+        if (!$slug) {
+            return redirect()->route('home');
+        }
+
+        $product = Product::where('slug', $slug)->firstOrFail();
+        
+        $subtotal = $product->price * $qty;
+
+        return view('pages.checkout', compact('product', 'qty', 'subtotal'));
+    }
 }

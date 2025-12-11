@@ -10,9 +10,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [HomeController::class, 'filterCategory'])->name('front.category');
 Route::get('/product/{slug}', [HomeController::class, 'details'])->name('front.details');
 
-Route::get('/checkout', function() {
-    return "Halaman Checkout (Soon)";
-})->name('checkout');
+Route::get('/checkout', [HomeController::class, 'checkout'])
+    ->middleware(['auth', 'verified'])
+    ->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
