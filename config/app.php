@@ -117,10 +117,16 @@ return [
     | Supported drivers: "file", "cache"
     |
     */
-
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    'aliases' => [
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Route' => Illuminate\Support\Facades\Route::class,
+    ],
+
+    
 
 ];
