@@ -49,6 +49,22 @@
         </div>
     </nav>
 
+    <div class="max-w-7xl mx-auto px-4 mt-24 mb-4">
+        @if(session('success'))
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded shadow-sm relative">
+                <p class="font-bold">Berhasil!</p>
+                <p>{{ session('success') }}</p>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded shadow-sm">
+                <p class="font-bold">Ups, ada masalah!</p>
+                <p>{{ session('error') }}</p>
+            </div>
+        @endif
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 mt-24 flex gap-6">
 
         <aside class="w-1/4 hidden md:block">

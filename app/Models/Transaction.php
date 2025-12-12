@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    use HasFactory;
+ 
     protected $fillable = [
         'code',
         'buyer_id',
@@ -21,6 +24,7 @@ class Transaction extends Model
         'tax',
         'grand_total',
         'payment_status',
+        'payment_method'
     ];
 
     protected $casts = [
@@ -31,7 +35,7 @@ class Transaction extends Model
 
     public function buyer()
     {
-        return $this->belongsTo(Buyer::class);
+        return $this->belongsTo(User::class, 'buyer_id');
     }
     public function store()
     {
@@ -45,5 +49,13 @@ class Transaction extends Model
     public function productReviews()
     {
         return $this->hasMany(ProductReview::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function details() {
+        return $this->hasMany(TransactionDetail::class);
     }
 }
