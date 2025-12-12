@@ -6,7 +6,6 @@
     <title>Riwayat Pesanan - KariSya Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animasi haluuss */
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -18,12 +17,8 @@
             <div class="flex justify-between items-center h-16">
                 
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="flex items-center gap-2 group">
-                        <div class="bg-blue-600 p-1.5 rounded-lg group-hover:bg-blue-700 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-white">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-                            </svg>
-                        </div>
+                    <a href="/" class="flex items-center gap-3 group">
+                        <img src="{{ asset('images/logo.png') }}" alt="KariSya Store Logo" class="h-10 w-auto transition transform group-hover:scale-105">
                         <span class="text-xl font-bold text-gray-800 tracking-tight">KariSya<span class="text-blue-600">Store</span></span>
                     </a>
                 </div>
@@ -38,15 +33,15 @@
 
                     <div class="h-6 w-px bg-gray-200"></div>
 
-                    <div class="flex items-center gap-3">
+                    <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 hover:bg-gray-50 p-2 rounded-lg transition group" title="Edit Profil">
                         <div class="text-right hidden sm:block">
-                            <div class="text-sm font-bold text-gray-700">{{ Auth::user()->name }}</div>
+                            <div class="text-sm font-bold text-gray-700 group-hover:text-blue-600 transition">{{ Auth::user()->name }}</div>
                             <div class="text-[10px] text-gray-400 uppercase tracking-wider">{{ Auth::user()->role }}</div>
                         </div>
-                        <div class="h-9 w-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
+                        <div class="h-9 w-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white group-hover:ring-blue-100 transition">
                             {{ substr(Auth::user()->name, 0, 1) }}
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -58,7 +53,7 @@
             <aside class="w-full md:w-1/4">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden sticky top-24">
                     <div class="p-5 bg-gray-50 border-b border-gray-100">
-                        <h3 class="font-bold text-gray-800">Menu</h3>
+                        <h3 class="font-bold text-gray-800">Menu Anggota</h3>
                     </div>
                     <nav class="p-3 space-y-1">
                         <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
@@ -130,16 +125,10 @@
                                     <div>
                                         @if($trx->payment_status == 'paid')
                                             <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3">
-                                                  <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
-                                                </svg>
                                                 LUNAS
                                             </span>
                                         @elseif($trx->payment_status == 'unpaid')
                                             <span class="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold border border-yellow-200">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3">
-                                                  <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM6.75 9.25a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z" clip-rule="evenodd" />
-                                                </svg>
                                                 BELUM BAYAR
                                             </span>
                                         @else

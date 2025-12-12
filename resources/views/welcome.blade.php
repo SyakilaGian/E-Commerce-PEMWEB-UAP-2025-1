@@ -6,19 +6,15 @@
     <title>Toko KariSya - Homepage</title>
     <script src="https://cdn.tailwindcss.com"></script> 
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50 font-sans antialiased">
 
     <nav class="bg-white shadow-sm border-b border-gray-200 fixed w-full z-50 top-0 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="flex items-center gap-2 group">
-                        <div class="bg-blue-600 p-1.5 rounded-lg group-hover:bg-blue-700 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-white">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-                            </svg>
-                        </div>
+                    <a href="/" class="flex items-center gap-3 group">
+                        <img src="{{ asset('images/logo.png') }}" alt="KariSya Store Logo" class="h-10 w-auto transition transform group-hover:scale-105">
                         <span class="text-xl font-bold text-gray-800 tracking-tight">KariSya<span class="text-blue-600">Store</span></span>
                     </a>
                 </div>
@@ -62,15 +58,16 @@
                         <div class="h-8 w-px bg-gray-200 mx-2 hidden md:block"></div>
 
                         <div class="flex items-center gap-4 ml-6">
-                            <div class="flex items-center gap-3 text-right">
-                                <div class="hidden md:block">
-                                    <div class="text-sm font-bold text-gray-700 leading-tight">{{ Auth::user()->name }}</div>
-                                    <div class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">{{ Auth::user()->role }}</div>
+                            
+                            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 hover:bg-gray-50 p-2 rounded-lg transition group" title="Edit Profil">
+                                <div class="text-right hidden sm:block">
+                                    <div class="text-sm font-bold text-gray-700 group-hover:text-blue-600 transition">{{ Auth::user()->name }}</div>
+                                    <div class="text-[10px] text-gray-400 uppercase tracking-wider">{{ Auth::user()->role }}</div>
                                 </div>
-                                <div class="h-9 w-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white">
+                                <div class="h-9 w-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white group-hover:ring-blue-100 transition">
                                     {{ substr(Auth::user()->name, 0, 1) }}
                                 </div>
-                            </div>
+                            </a>
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
