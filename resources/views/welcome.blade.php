@@ -19,7 +19,7 @@
                 <div class="flex items-center space-x-4">
                     @auth
                         @if(Auth::user()->isAdmin())
-                            <a href="{{ route('filament.admin.pages.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">
+                            <a href="{{ route('admin.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">
                                 Admin Dashboard
                             </a>
                         @endif

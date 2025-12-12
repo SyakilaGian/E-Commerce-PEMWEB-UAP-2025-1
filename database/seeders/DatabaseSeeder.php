@@ -13,27 +13,43 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. User Admin/Seller
-        $user = User::create([
-            'name' => 'Dina Seller',
-            'email' => 'dina@store.com',
+        // Admin
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@toko.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
+        ]);
+
+        // Seller
+        $seller = User::create([
+            'name' => 'Amelia Seller',
+            'email' => 'amelia@store.com',
             'password' => bcrypt('password'),
             'role' => 'member',
         ]);
-        
-        // Wallet untuk User
-        $user->balance()->create(['balance' => 0]);
 
-        // 2. Toko
+        $seller->balance()->create(['balance' => 0]);
+
+        // Buyer
+        $buyer = User::create([
+            'name' => 'Gian Buyer',
+            'email' => 'gian@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'member',
+        ]);
+        $buyer->balance()->create(['balance' => 0]);
+        
+        // Toko
         $store = Store::create([
-            'user_id' => $user->id,
+            'user_id' => $seller->id,
             'name' => 'KariSya Official',
             'slug' => 'karisya-official',
             'is_verified' => true,
             'about' => 'Toko resmi KariSya menyediakan segala kebutuhanmu. Dari fashion sampai elektronik, semuanya ada!',
         ]);
 
-        // 3. Kategori
+        // Kategori
         $categories = [
             'Fashion Wanita',
             'Fashion Pria',
@@ -42,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'Rumah Tangga & Living'
         ];
 
-        // 4. 10 Produk Dummy
+        // 10 Produk Dummy
         foreach ($categories as $catName) {
             
             $slugKategori = Str::slug($catName);
