@@ -16,7 +16,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
-        
     Route::post('/checkout', [HomeController::class, 'processCheckout'])->name('checkout.process');
 
     Route::get('/wallet/topup', [HomeController::class, 'topup'])->name('front.topup');
@@ -28,6 +27,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// ==========================
+// ROUTE KHUSUS ADMIN
+// ==========================
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return "Halaman Admin Dashboard";
+    })->name('admin.dashboard');
 });
 
 require __DIR__.'/auth.php';
