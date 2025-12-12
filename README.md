@@ -6,14 +6,14 @@ Proyek ini dibuat untuk memenuhi tugas Final Project / UAP Pemrograman Web.
 
 ---
 
-## 👥 Anggota Kelompok
+## Anggota Kelompok
 
 | No  | Nama Lengkap | NIM | Peran / Jobdesk |
 | :-- | :--- | :--- | :--- |
 | 1.  | **Syakila Gian Nayla** | **245150607111010** | **Frontend & User Features** (Homepage, Checkout, Wallet, Profile) |
 | 2.  | **Karina Amelia Wulandari** ] | **245150607111013** | **Backend & Admin/Seller** (Dashboard, CRUD Produk, Verifikasi Toko) |
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 Aplikasi ini memiliki 3 hak akses (Role) dengan fitur yang berbeda:
 
