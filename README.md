@@ -72,7 +72,7 @@ Ikuti langkah berikut untuk menjalankan proyek ini di komputer lokal:
     ```
     Buka file `.env` dan sesuaikan konfigurasi database:
     ```env
-    DB_DATABASE=nama_database_kalian
+    DB_DATABASE=e_commerce_uap
     DB_USERNAME=root
     DB_PASSWORD=
     ```
