@@ -29,4 +29,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// ==========================
+// ROUTE KHUSUS ADMIN
+// ==========================
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return "Halaman Admin Dashboard";
+    })->name('admin.dashboard');
+});
+
 require __DIR__.'/auth.php';
