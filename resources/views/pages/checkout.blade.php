@@ -16,10 +16,18 @@
         </div>
     </nav>
 
+    <div class="max-w-7xl mx-auto px-4 mt-4">
+        @if(session('error'))
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded shadow-sm" role="alert">
+                <p class="font-bold">Gagal!</p>
+                <p>{{ session('error') }}</p>
+            </div>
+        @endif
+    </div>
     <div class="max-w-7xl mx-auto px-4 mb-20">
         <h1 class="text-3xl font-bold text-gray-800 mb-8">Checkout Pengiriman</h1>
 
-        <form action="#" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <form action="{{ route('checkout.process') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             @csrf
             
             <div class="lg:col-span-2 space-y-6">
@@ -72,14 +80,27 @@
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Metode Pembayaran</h2>
                     
                     <div class="space-y-3">
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500">
-                            <input type="radio" name="payment_method" value="wallet" class="h-4 w-4 text-blue-600">
-                            <div class="ml-4 flex-1">
-                                <span class="block font-bold text-gray-900">My Wallet</span>
-                                <span class="block text-sm text-gray-500">Saldo: Rp {{ number_format(Auth::user()->balance->balance ?? 0, 0, ',', '.') }}</span>
-                            </div>
-                        </label>
+                        <div class="border rounded-lg p-4 hover:bg-blue-50 transition has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500">
+                            <label class="flex items-center cursor-pointer w-full">
+                                <input type="radio" name="payment_method" value="wallet" class="h-4 w-4 text-blue-600">
+                            
+                                <div class="ml-4 flex-1">
+                                    <span class="block font-bold text-gray-900">My Wallet</span>
+                                
+                                    <div class="flex items-center justify-between sm:justify-start sm:gap-4 mt-1">
+                                        <span class="block text-sm text-gray-500">
+                                            Saldo: Rp {{ number_format(Auth::user()->balance->balance ?? 0, 0, ',', '.') }}
+                                        </span>
 
+                                        <button type="button" onclick="document.getElementById('topupModal').classList.remove('hidden')" 
+                                                class="text-xs bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 transition shadow-sm font-bold z-10">
+                                            + Isi Saldo
+                                        </button>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        
                         <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-blue-50 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500">
                             <input type="radio" name="payment_method" value="va_transfer" class="h-4 w-4 text-blue-600">
                             <div class="ml-4 flex-1">
@@ -141,6 +162,36 @@
             </div>
         </form>
     </div>
+
+        <div id="topupModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
+    <div class="relative p-5 border w-96 shadow-lg rounded-xl bg-white">
+        <div class="text-center">
+            <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2">Isi Saldo Wallet 💰</h3>
+            
+            <p class="text-sm text-gray-500 mb-6">
+                Masukkan nominal topup. Kamu akan diarahkan ke simulasi pembayaran.
+            </p>
+            
+            <form action="{{ route('front.topup.post') }}" method="POST">
+                @csrf
+                <input type="number" name="amount" placeholder="Minimal Rp 10.000" min="10000" required
+                       class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6 bg-gray-50">
+                
+                <div class="flex gap-3">
+                    <button type="button" onclick="document.getElementById('topupModal').classList.add('hidden')"
+                            class="flex-1 px-4 py-2 bg-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-300 transition">
+                        Batal
+                    </button>
+                    
+                    <button type="submit"
+                            class="flex-1 px-4 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg">
+                        Lanjut
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

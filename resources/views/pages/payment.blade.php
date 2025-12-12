@@ -38,6 +38,7 @@
             <input type="hidden" name="type" value="{{ $type }}">
             <input type="hidden" name="amount" value="{{ $amount }}">
             <input type="hidden" name="va_number" value="{{ $vaNumber }}">
+            <input type="hidden" name="trx_id" value="{{ request('trx_id') }}">
 
             <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-lg transition transform hover:scale-105 shadow-lg">
                 KONFIRMASI PEMBAYARAN
