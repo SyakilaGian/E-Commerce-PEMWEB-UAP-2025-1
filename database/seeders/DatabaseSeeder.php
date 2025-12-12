@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
         // Toko
         $store = Store::create([
             'user_id' => $seller->id,
-            'name' => 'KariSya Official',
-            'slug' => 'karisya-official',
+            'name' => 'KiStore',
+            'slug' => 'kistore',
             'is_verified' => true,
             'about' => 'Toko resmi KariSya menyediakan segala kebutuhanmu. Dari fashion sampai elektronik, semuanya ada!',
         ]);

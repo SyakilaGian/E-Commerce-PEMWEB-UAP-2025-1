@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [HomeController::class, 'filterCategory'])->name('front.category');
 Route::get('/product/{slug}', [HomeController::class, 'details'])->name('front.details');
+Route::get('/store/{slug}', [HomeController::class, 'store'])->name('front.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

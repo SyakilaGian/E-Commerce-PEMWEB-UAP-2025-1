@@ -195,4 +195,16 @@ class HomeController extends Controller
 
         return view('pages.orders', compact('transactions'));
     }
+
+    public function store($slug)
+    {
+        // 1. Cari Toko berdasarkan Slug (misal: karisya-official)
+        $store = \App\Models\Store::where('slug', $slug)->firstOrFail();
+
+        // 2. Ambil semua produk milik toko tersebut
+        $products = \App\Models\Product::where('store_id', $store->id)->latest()->get();
+
+        // 3. Tampilkan view
+        return view('pages.store', compact('store', 'products'));
+    }
 }
