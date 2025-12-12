@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/payment', [HomeController::class, 'payment'])->name('front.payment');
     Route::post('/payment', [HomeController::class, 'paymentPost'])->name('front.payment.post');
 
+    Route::get('/my-orders', [HomeController::class, 'orders'])->name('front.orders');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
