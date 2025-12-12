@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Transaction;
 
 class HomeController extends Controller
 {
@@ -160,10 +161,10 @@ class HomeController extends Controller
             if (session()->has('last_checkout_data')) {
                 $checkoutData = session('last_checkout_data');
                 
+                // Redirect KEMBALI ke halaman Checkout (bawa data produk tadi)
                 return redirect()->route('checkout', $checkoutData)
                     ->with('success', 'Topup Berhasil! Saldo bertambah. Silakan lanjutkan pembayaran.');
             }
-
             return redirect()->route('home')->with('success', 'Topup Berhasil! Saldo sudah masuk.');
         }
 
@@ -183,5 +184,27 @@ class HomeController extends Controller
         }
 
         return redirect()->route('home');
+    }
+
+    public function orders()
+    {
+        $transactions = Transaction::where('buyer_id', auth()->id())
+            ->with(['details.product'])
+            ->latest()
+            ->get();
+
+        return view('pages.orders', compact('transactions'));
+    }
+
+    public function store($slug)
+    {
+        // 1. Cari Toko berdasarkan Slug (misal: karisya-official)
+        $store = \App\Models\Store::where('slug', $slug)->firstOrFail();
+
+        // 2. Ambil semua produk milik toko tersebut
+        $products = \App\Models\Product::where('store_id', $store->id)->latest()->get();
+
+        // 3. Tampilkan view
+        return view('pages.store', compact('store', 'products'));
     }
 }

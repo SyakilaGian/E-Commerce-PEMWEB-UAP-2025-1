@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [HomeController::class, 'filterCategory'])->name('front.category');
 Route::get('/product/{slug}', [HomeController::class, 'details'])->name('front.details');
+Route::get('/store/{slug}', [HomeController::class, 'store'])->name('front.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -23,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/payment', [HomeController::class, 'payment'])->name('front.payment');
     Route::post('/payment', [HomeController::class, 'paymentPost'])->name('front.payment.post');
+
+    Route::get('/my-orders', [HomeController::class, 'orders'])->name('front.orders');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
