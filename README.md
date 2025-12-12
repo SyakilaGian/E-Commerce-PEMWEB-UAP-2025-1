@@ -56,7 +56,7 @@ Ikuti langkah berikut untuk menjalankan proyek ini di komputer lokal:
 
 1.  **Clone Repositori**
     ```bash
-    git clone [https://github.com/USERNAME/NAMA-REPO.git](https://github.com/SyakilaGian/E-Commerce-PEMWEB-UAP-2025-1.git)
+    git clone https://github.com/SyakilaGian/E-Commerce-PEMWEB-UAP-2025-1.git
     ```
 
 2.  **Install Dependencies**
