@@ -17,16 +17,16 @@ return new class extends Migration
             $table->foreignId('buyer_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
             $table->text('address');
-            $table->string('address_id');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('shipping');
-            $table->string('shipping_type');
-            $table->decimal('shipping_cost', 26, 2);
+            $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('shipping')->nullable();
+            $table->string('shipping_type')->nullable();
+            $table->decimal('shipping_cost', 15, 2)->default(0);
             $table->string('tracking_number')->nullable();
-            $table->decimal('tax', 26, 2);
-            $table->decimal('grand_total', 26, 2);
-            $table->enum('payment_status', ['unpaid', 'paid'])->default('unpaid');
+            $table->decimal('tax', 15, 2)->default(0);
+            $table->decimal('grand_total', 15, 2);
+            $table->string('payment_method');
+            $table->enum('payment_status', ['unpaid', 'paid', 'failed'])->default('unpaid');
             $table->timestamps();
         });
     }
