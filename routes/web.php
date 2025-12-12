@@ -16,7 +16,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
-        
     Route::post('/checkout', [HomeController::class, 'processCheckout'])->name('checkout.process');
 
     Route::get('/wallet/topup', [HomeController::class, 'topup'])->name('front.topup');
