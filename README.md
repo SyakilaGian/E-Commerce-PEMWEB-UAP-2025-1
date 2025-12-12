@@ -11,7 +11,7 @@ Proyek ini dibuat untuk memenuhi tugas Final Project / UAP Pemrograman Web.
 | No  | Nama Lengkap | NIM | Peran / Jobdesk |
 | :-- | :--- | :--- | :--- |
 | 1.  | **Syakila Gian Nayla** | **245150607111010** | **Frontend & User Features** (Homepage, Checkout, Wallet, Profile) |
-| 2.  | **Karina Amelia Wulandari** ] | **245150607111013** | **Backend & Admin/Seller** (Dashboard, CRUD Produk, Verifikasi Toko) |
+| 2.  | **Karina Amelia Wulandari** | **245150607111013** | **Backend & Admin/Seller** (Dashboard, CRUD Produk, Verifikasi Toko) |
 
 ## Fitur Utama
 
@@ -56,8 +56,7 @@ Ikuti langkah berikut untuk menjalankan proyek ini di komputer lokal:
 
 1.  **Clone Repositori**
     ```bash
-    git clone [https://github.com/USERNAME/NAMA-REPO.git](https://github.com/USERNAME/NAMA-REPO.git)
-    cd NAMA-REPO
+    git clone [https://github.com/USERNAME/NAMA-REPO.git](https://github.com/SyakilaGian/E-Commerce-PEMWEB-UAP-2025-1.git)
     ```
 
 2.  **Install Dependencies**
